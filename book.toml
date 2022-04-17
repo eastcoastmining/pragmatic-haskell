@@ -1,0 +1,6 @@
+[book]
+authors = ["s0kil"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Pragmatic Haskell"
