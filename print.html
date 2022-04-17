@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,7 +135,159 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>This guide serves as an quick start to Haskell for those new to programming in general, but with some understanding of JavaScript, Ruby or Python, In this guide we will refer to JavaScript, Ruby and Python as Common Programming Languages</p>
+<h2 id="installing-haskell"><a class="header" href="#installing-haskell">Installing Haskell</a></h2>
+<p>Follow the steps outlined in <a href="https://www.haskell.org/ghcup/install/">GHCup Getting Started</a> to install <code>ghc</code>, <code>runghc</code>, and <code>ghci</code>.</p>
+<ul>
+<li><code>ghc</code> is a Haskell compiler that &quot;compiles&quot; or translates your source into a binary language computers can understand</li>
+<li><code>runghc</code> is a shortcut to compile your code and then run it</li>
+<li><code>ghci</code> allows you to run Haskell code interactively, similar to Python or Ruby repl</li>
+</ul>
+<h2 id="what-is-haskell"><a class="header" href="#what-is-haskell">What is Haskell</a></h2>
+<p>Haskell is a statically-typed, purely functional programming language with type inference and lazy evaluation.
+Let's break that down:</p>
+<h3 id="statically-typed"><a class="header" href="#statically-typed">Statically Typed</a></h3>
+<p>Static Typing means that the compiler (program that translates source code into machine code) knows what are that types of all your variables and functions are during compile time. In a common programming language (JavaScript, Ruby, Python), the source code is dynamically typed, meaning that the interpreter only knows the types of your variables once they are evaluated (ran).</p>
+<p>Example dynamically typed (JavaScript):</p>
+<pre><code class="language-javascript">// We define a new variable as empty string
+let myDate = &quot;&quot;;
+// We try to create a new Date
+let newDate = new Date(myDate); // Error: Invalid Date
+</code></pre>
+<p>A new <code>Date</code> could not be created from an empty string, the error happened when <code>new Date(myDate)</code> was evaluated.</p>
+<p>Example statically typed (Haskell):</p>
+<pre><code class="language-haskell">-- We define a new variable as empty string
+myDate :: String -- We tell Haskell that `myDate` is a String
+myDate = &quot;&quot;
+-- we try to create a new Date
+newDate = UTCTime myDate -- Error: Couldn't match expected type ‘time-1.9.3:Data.Time.Calendar.Days.Day’ with actual type ‘String’
+</code></pre>
+<p>A new <code>UTCTime</code> could not be created from a string, this error happens at compile time, when ghc tries to translate your source code into machine code</p>
+<h3 id="immutable-data"><a class="header" href="#immutable-data">Immutable Data</a></h3>
+<p>Immutable data means that when we create a variable we can no longer change it, for example:
+In JavaScript:</p>
+<pre><code class="language-js">// We define a variable
+let myAge = 10;
+// We change the variable
+myAge = 20;
+</code></pre>
+<p>We can mutate (change) <code>myAge</code> as many times as we would like, since JavaScript allows mutable variables.
+When we try to do the same in Haskell:</p>
+<pre><code class="language-haskell">myAge :: Int
+myAge = 10
+myAge = 20 -- This is not allowed `myAge` can only be defined once, and we cannot change it
+</code></pre>
+<h3 id="declarative"><a class="header" href="#declarative">Declarative</a></h3>
+<p>Declarative means we tell the computer <strong>what</strong> we want to achieve, not <strong>how</strong> to achieve it.</p>
+<p>Example Imperative:</p>
+<pre><code class="language-js">let p = document.createElement(&quot;p&quot;);
+p.textContent = &quot;Hello&quot;;
+document.body.append(p);
+</code></pre>
+<p>This is an imperative way of programming, we create a <code>&lt;p&gt;</code> tag, and insert some text, then append it to the document body</p>
+<p>Example Declarative:</p>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+<p>This is an declarative way of programming, we don't specify how to create a body tag, or p tag</p>
+<h3 id="purely-functional"><a class="header" href="#purely-functional">Purely Functional</a></h3>
+<p>Pure means doing one thing, and one thing only, example: <code>1 + 1</code>, that is pure, we all know that the result is <code>2</code>.</p>
+<p>In common programming languages we can can mix pure and impure functions together:</p>
+<p>Example JavaScript:</p>
+<pre><code class="language-js">function addImpure(number1, number2) {
+  let day = new Date().getDay();
+  console.log(&quot;Todays Day Is: &quot;, day);
+  return number1 + number2;
+}
+// The `addImpure` function is not pure, it will add two numbers together, but also print todays Day to the console.
+
+function addPure(number1, number2) {
+  return number1 + number2;
+}
+// The `addPure` function is pure, it will add two numbers together and do nothing else.
+</code></pre>
+<p>Haskell is purely functional, you cannot have impure functions such as:</p>
+<pre><code class="language-haskell">-- We create a function `addImpure` that receives `number1` which is of type `Int`, a `number2` also `Int` type, and then returns a value that is also `Int` type.
+addImpure :: Int -&gt; Int -&gt; Int
+addImpure number1 number2 =
+    print &quot;Hello&quot; -- We cannot do this, the compiler will fail with an error
+    number1 + number2
+</code></pre>
+<p>We can only create pure functions:</p>
+<pre><code class="language-haskell">-- We create a Pure Function named `addPure`
+addPure :: Int -&gt; Int -&gt; Int
+addPure number1 number2 =
+    number1 + number2
+</code></pre>
+<h2 id="type-inference"><a class="header" href="#type-inference">Type Inference</a></h2>
+<p>Type inference is very useful when writing lots of functions and variables, if allows the compiler to figure out what is the Type of functions and values</p>
+<p>Let's revisit the function defined above:</p>
+<pre><code class="language-haskell">addPure :: Int -&gt; Int -&gt; Int
+addPure number1 number2 =
+    number1 + number2
+</code></pre>
+<p>We specified that <code>addPure</code> has a type of <code>Int -&gt; Int -&gt; Int</code>.</p>
+<p>However we did not have to do that, Haskell can figure it out for us:</p>
+<pre><code class="language-haskell">addPure number1 number2 =
+    -- Haskell figured out that `number1` and `number2` are both of type `Int`, so we can add them together
+    number1 + number2
+</code></pre>
+<h2 id="lazy-evaluation"><a class="header" href="#lazy-evaluation">Lazy Evaluation</a></h2>
+<p>Haskell is lazy, just like many programmers, it will not do things unless it needs to</p>
+<p>In common programming languages, when we define variables they are immediately evaluated.</p>
+<p>Example JavaScript:</p>
+<pre><code class="language-js">let something = console.log(&quot;Hello from here&quot;);
+let one = 1;
+let two = 2;
+console.log(one + two);
+// Output Is:
+// Hello from here
+// 3
+</code></pre>
+<p>In the example above, the variable <code>something</code> is evaluated, even though we did not use it anywhere in the code.</p>
+<p>Example Haskell:</p>
+<pre><code class="language-haskell">something = print &quot;Hello from here&quot;
+one = 1
+two = 2
+
+main =
+  print (1 + 2)
+
+-- Output Is:
+-- 3
+</code></pre>
+<p>In the example above, the variable <code>something</code> is not evaluated, Haskell figured out that we did not use it anywhere.</p>
+<h3 id="once-again-what-is-haskell"><a class="header" href="#once-again-what-is-haskell">Once again, What is Haskell?</a></h3>
+<p>We can now see how statically-typed, purely functional, type inference and lazy evaluation work together:</p>
+<pre><code class="language-haskell">-- This wont be evaluated, because we don't use it anywhere else in the code
+something = print &quot;Lazy&quot;
+
+-- `addNumbers` is pure, it does nothing other than add two numbers
+addNumbers :: Int -&gt; Int -&gt; Int
+addNumbers number1 number2 =
+  number1 + number2
+
+-- We don't need to specify the type for everything, haskell can figure it out.
+addStrings string1 string2 =
+  string1 ++ string2
+
+-- This will fail, `addNumbers` function can only accept numbers not strings
+result = addNumbers 1 &quot;2&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
+<p>In this guide we will refer to various books and videos in each section. Make sure to also watch the videos to further strengthen your memory of the topic.</p>
+<p>Here are some videos to get started (in order):</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Vgu82wiiZ90">Haskell for Imperative Programmers #1 - Basics</a></li>
+<li><a href="https://www.youtube.com/watch?v=rIprO6zoujM">Functional Programming in Haskell #3 - Introduction</a></li>
+<li><a href="https://www.youtube.com/watch?v=YtZIKujkSmU">Functional Programming in Haskell #4 - First Steps</a></li>
+</ul>
+<h1 id="todo"><a class="header" href="#todo">TODO:</a></h1>
+<ul>
+<li>http://learnyouahaskell.com/starting-out</li>
+</ul>
 
                     </main>
 
