@@ -1,13 +1,14 @@
 # Getting Started
 
-In this guide we will refer to various books and videos in each section. Make sure to also watch the videos to further strengthen your memory of the topic.
+## Reading Standard Library Documentation
 
-Here are some videos to get started (in order):
+There are multiple ways to read the standard library docs
 
-- [Haskell for Imperative Programmers #1 - Basics](https://www.youtube.com/watch?v=Vgu82wiiZ90)
-- [Functional Programming in Haskell #3 - Introduction](https://www.youtube.com/watch?v=rIprO6zoujM)
-- [Functional Programming in Haskell #4 - First Steps](https://www.youtube.com/watch?v=YtZIKujkSmU)
+- [Hackage](https://hackage.haskell.org/package/base)
+  - Press `s` to search the entire library
+- [DevDocs](https://devdocs.io/haskell~8)
 
-# TODO:
+## Installing Editor Tooling
 
-- http://learnyouahaskell.com/starting-out
+- You can install HLS (Haskell Language Server) with [GHCup](https://haskell-language-server.readthedocs.io/en/latest/installation.html#ghcup)
+- [Configure your editor](https://haskell-language-server.readthedocs.io/en/latest/configuration.html?highlight=vscode#configuring-your-editor) to you HLS

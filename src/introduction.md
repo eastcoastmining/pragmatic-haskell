@@ -1,6 +1,7 @@
 # Introduction
 
-This guide serves as an quick start to Haskell for those new to programming in general, but with some understanding of JavaScript, Ruby or Python, In this guide we will refer to JavaScript, Ruby and Python as Common Programming Languages
+This outline serves as an quick start to Haskell for those new to programming in general, but with some understanding of JavaScript, Ruby or Python.In this outline we will refer to JavaScript, Ruby and Python as Common Programming Languages
+There will be links to various books and videos in each section. Make sure to also watch the videos to further strengthen your memory of the topic.
 
 ## Installing Haskell
 
@@ -89,7 +90,7 @@ This is an declarative way of programming, we don't specify how to create a body
 
 ### Purely Functional
 
-Pure means doing one thing, and one thing only, example: `1 + 1`, that is pure, we all know that the result is `2`.
+Pure means doing one thing, and one thing only, example: `1 + 1`, the `+` function is pure, it adds two numbers together and does nothing else.
 
 In common programming languages we can can mix pure and impure functions together:
 
